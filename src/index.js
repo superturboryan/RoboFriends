@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider, connect } from 'react-redux';
-import { createStore } from 'redux';
+
+import { Provider } from 'react-redux';
+import { createStore , applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger'
 
 import './index.css';
 import App from './containers/app'
@@ -10,12 +12,14 @@ import 'tachyons';
 
 import { searchRobots } from './reducers';
 
+const logger = createLogger();
+
 //Used to combine different reducers
-const store = createStore( searchRobots )
+const store = createStore( searchRobots , applyMiddleware(logger))
 
 ReactDOM.render(
-					<Provider>
-						<App store={store}/>
+					<Provider store={store}>
+						<App />
 					</Provider>, document.getElementById('root'));
 
 serviceWorker.unregister();
