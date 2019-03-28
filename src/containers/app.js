@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
 
 class App extends Component {
 	
-	componentDidMount() {
+	componentDidMount() { 
 		this.props.onRequestRobots();
 	}
 
@@ -45,6 +45,7 @@ class App extends Component {
 		const filteredRobots = robots.filter(robot => {
 			return robot.name.toLowerCase().includes(searchField.toLowerCase());
 		})
+
 		if (!robots.length) { //0 = false in JS
 			return <h1 className='tc'>Loading</h1>
 		}
